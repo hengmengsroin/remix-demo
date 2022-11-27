@@ -1,10 +1,9 @@
-import { Box, Center, HStack, VStack } from "@chakra-ui/react";
-import { ActionArgs } from "@remix-run/node";
+import { Box, VStack } from "@chakra-ui/react";
+import type { ActionArgs } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
 import AppBar from "~/components/AppBar";
 import NavBar from "~/components/NavBar";
 import { authenticator } from "~/services/auth.server";
-import { getSession } from "~/services/session.server";
 export async function action({ request }: ActionArgs) {
   await authenticator.logout(request, { redirectTo: "/login" });
 }

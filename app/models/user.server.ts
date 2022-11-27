@@ -1,4 +1,3 @@
-import { generalApi } from "~/services/generalApi";
 import { userAPI } from "~/services/userApi";
 
 export type User = {

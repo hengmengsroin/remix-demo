@@ -1,14 +1,14 @@
 // app/services/auth.server.ts
 import { Authenticator } from "remix-auth";
-import { User } from "~/models/user.server";
+import type { User } from "~/models/user.server";
 import { sessionStorage } from "~/services/session.server";
+import { FormStrategy } from "remix-auth-form";
+import { generalApi } from "./generalApi";
+import { LocalStorageKey, localStorageService } from "./localStorageService";
 
 // Create an instance of the authenticator, pass a generic with what
 // strategies will return and will store in the session
 export let authenticator = new Authenticator<User>(sessionStorage);
-import { FormStrategy } from "remix-auth-form";
-import { generalApi } from "./generalApi";
-import { LocalStorageKey, localStorageService } from "./localStorageService";
 
 // Tell the Authenticator to use the form strategy
 authenticator.use(

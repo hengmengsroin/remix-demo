@@ -2,16 +2,9 @@ import {
   Avatar,
   Badge,
   Box,
-  Center,
-  CircularProgress,
-  Divider,
   HStack,
-  Icon,
   IconButton,
-  Input,
   Kbd,
-  Select,
-  Spacer,
   Table,
   Tbody,
   Td,
@@ -20,18 +13,12 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction } from "@remix-run/node";
 import TimeAgo from "react-timeago";
-import { getUsers, User, UserRes } from "~/models/user.server";
+import type { UserRes } from "~/models/user.server";
+import { getUsers } from "~/models/user.server";
 import { AiOutlineEye } from "react-icons/ai";
-import {
-  MdArrowBackIos,
-  MdArrowForwardIos,
-  MdDelete,
-  MdEdit,
-  MdError,
-  MdRefresh,
-} from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
 import { Helper } from "~/utils/helper";
 import { useLoaderData } from "@remix-run/react";
 type LoaderData = {

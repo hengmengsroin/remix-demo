@@ -1,4 +1,4 @@
-import { Box, Button, HStack, IconButton, Spacer } from "@chakra-ui/react";
+import { Box, IconButton, Spacer } from "@chakra-ui/react";
 
 export default function AppBar() {
   return (

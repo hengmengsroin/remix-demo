@@ -1,4 +1,5 @@
-import axios, { AxiosInstance } from "axios";
+import type { AxiosInstance } from "axios";
+import axios from "axios";
 import { LocalStorageKey, localStorageService } from "./localStorageService";
 export class BaseHttp {
   baseUrl: string;
@@ -6,7 +7,6 @@ export class BaseHttp {
   constructor() {
     this.baseUrl = process.env.API_URL + "/v1";
     console.log("baseUrl", this.baseUrl);
-
     this.apiClient = axios.create({ baseURL: this.baseUrl });
   }
 
