@@ -5,7 +5,9 @@ import AppBar from "~/components/AppBar";
 import NavBar from "~/components/NavBar";
 import { authenticator } from "~/services/auth.server";
 export async function action({ request }: ActionArgs) {
-  await authenticator.logout(request, { redirectTo: "/login" });
+  console.log("call action here in to logout");
+
+  return await authenticator.logout(request, { redirectTo: "/login" });
 }
 export default function Index() {
   return (

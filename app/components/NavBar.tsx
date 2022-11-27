@@ -1,7 +1,7 @@
 import { Box, Center, HStack, Icon } from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
-import { IconType } from "react-icons";
-import { MdHomeFilled, MdInfo, MdPeople, MdPhone } from "react-icons/md";
+import type { IconType } from "react-icons";
+import { MdHomeFilled, MdPeople, MdPhone } from "react-icons/md";
 type MenuItemType = {
   name: string;
   href: string;
@@ -27,6 +27,7 @@ const menuItems: MenuItemType[] = [
 
 const NavBar = () => {
   const navigate = useNavigate();
+
   const handleMenuClick = (item: string) => {
     navigate(item);
   };

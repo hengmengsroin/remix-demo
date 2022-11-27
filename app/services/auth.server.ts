@@ -15,13 +15,14 @@ authenticator.use(
   new FormStrategy(async ({ form }) => {
     let email = form.get("email")?.toString() ?? "";
     let password = form.get("password")?.toString() ?? "";
-    let user = await generalApi.login(email, password);
-    console.log({ user });
-    localStorageService.set(LocalStorageKey.TOKEN, user.token);
+    let response = await generalApi.login(email, password);
+    console.log({ response });
+    localStorageService.set(LocalStorageKey.TOKEN, response.token);
+    localStorageService.set(LocalStorageKey.USER, response.user);
     // the type of this user must match the type you pass to the Authenticator
     // the strategy will automatically inherit the type if you instantiate
     // directly inside the `use` method
-    return user;
+    return response;
   }),
   // each strategy has a name and can be changed to use another one
   // same strategy multiple times, especially useful for the OAuth2 strategy.

@@ -14,7 +14,7 @@ class LocalStorageService {
   constructor() {
     this.encryptLocalStorage = new EncryptStorage(
       this.SECRET_KEY,
-      "localStorage"
+      "sessionStorage"
     );
   }
   get(key: LocalStorageKey) {
@@ -28,7 +28,6 @@ class LocalStorageService {
   }
 
   set(key: LocalStorageKey, value: any) {
-    return "";
     this.encryptLocalStorage.encrypt(key.valueOf(), value);
   }
 

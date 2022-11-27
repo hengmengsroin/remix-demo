@@ -47,8 +47,8 @@ export class BaseHttp {
     let res: any = null;
     console.log("params", params);
     let token = localStorageService.get(LocalStorageKey.TOKEN);
-    token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmQ4YzZhN2UzNTRiOTZjMTQ2OTBlM2YiLCJpYXQiOjE2NjY4NTMzNTUsImV4cCI6MTY2NzExMjU1NX0.TtmcTgSLWGQ7aIpKgTZ_WYpRk8788zoe0NxesDsAo1A";
+    // let token = localStorage.getItem("token");
+    console.log({ token });
     let option = {
       headers: {
         Authorization: "Bearer " + token,

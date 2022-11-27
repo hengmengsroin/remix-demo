@@ -1,4 +1,4 @@
-import { Box, IconButton, Spacer } from "@chakra-ui/react";
+import { Box, Button, IconButton, Spacer } from "@chakra-ui/react";
 
 export default function AppBar() {
   return (
@@ -8,15 +8,15 @@ export default function AppBar() {
       w={"100%"}
       display="flex"
       flexDir={"row"}
-      px="10px"
+      p="10px"
       alignItems={"center"}
       justifyItems={"center"}
     >
       <Spacer />
       <form method="post">
-        <IconButton type={"submit"} name={"btn"} aria-label="logout">
+        <Button type={"submit"} name={"btn"} aria-label="logout">
           Logout
-        </IconButton>
+        </Button>
       </form>
     </Box>
   );

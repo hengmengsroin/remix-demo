@@ -16,21 +16,22 @@ import {
 import type { LoaderFunction } from "@remix-run/node";
 import TimeAgo from "react-timeago";
 import type { UserRes } from "~/models/user.server";
-import { getUsers } from "~/models/user.server";
 import { AiOutlineEye } from "react-icons/ai";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Helper } from "~/utils/helper";
 import { useLoaderData } from "@remix-run/react";
+import { userAPI } from "~/services/userApi";
 type LoaderData = {
   userData: UserRes;
 };
 export function ErrorBoundary({ error }: any) {
   console.error(error);
-  return <Box>error</Box>;
+  return <Box>Getting user has error</Box>;
 }
 export const loader: LoaderFunction = async () => {
+  let userList = await userAPI.getAll({ count: 10, page: 1 });
   return {
-    userData: await getUsers(),
+    userData: userList,
   };
 };
 
