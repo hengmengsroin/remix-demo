@@ -39,7 +39,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   let userId = session.get("user_id");
   console.log({ token, userId });
 
-  let userList = await userAPI.getAll({ count: 10, page: 1 }, token);
+  let userList = await userAPI.getAll({ count: 30, page: 1 }, token);
   return {
     userData: userList,
   };
@@ -52,12 +52,12 @@ export default function Index() {
     <Box
       border={"1px gray solid"}
       boxShadow={"md"}
-      flex="1"
       flexDir={"column"}
       display={"flex"}
       w="100%"
+      h="calc(100vh - 160px)"
     >
-      <Box bg={"blue.100"} flex={1} h="80%" overflowY={"auto"}>
+      <Box bg={"blue.100"} overflowY={"auto"}>
         <Table size="sm">
           <Thead bg={"gray.100"}>
             <Tr height="40px">

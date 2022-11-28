@@ -32,7 +32,14 @@ const NavBar = () => {
     navigate(item);
   };
   return (
-    <Box w="300px" bg="blue.50" display={"flex"} flexDir="column" p="20px">
+    <Box
+      w="300px"
+      bg="blue.50"
+      display={"flex"}
+      flexDir="column"
+      p="20px"
+      h={"100vh"}
+    >
       <Center p="20px" fontWeight={"bold"} fontSize="3xl" color="orange.600">
         LOGO
       </Center>
