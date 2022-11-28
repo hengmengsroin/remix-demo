@@ -8,12 +8,20 @@ export class CrudBaseService {
     this.baseHttp = new BaseHttp();
   }
 
-  getAll(data?: { page?: number; count?: number; query?: any }) {
-    return this.baseHttp.getRequest(this.basePath, {
-      page: data?.page,
-      count: data?.count,
-      ...data?.query,
-    });
+  getAll(
+    data?: { page?: number; count?: number; query?: any },
+    token?: string
+  ) {
+    return this.baseHttp.getRequest(
+      this.basePath,
+      {
+        page: data?.page,
+        count: data?.count,
+        ...data?.query,
+      },
+      "get",
+      token
+    );
   }
 
   getOne(id: string) {

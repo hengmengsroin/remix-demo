@@ -43,12 +43,15 @@ export class BaseHttp {
     }
   }
 
-  async getRequest(path: string, params?: any, method: string = "get") {
+  async getRequest(
+    path: string,
+    params?: any,
+    method: string = "get",
+    token: string = ""
+  ) {
     let res: any = null;
     console.log("params", params);
-    let token = localStorageService.get(LocalStorageKey.TOKEN);
-    // let token = localStorage.getItem("token");
-    console.log({ token });
+
     let option = {
       headers: {
         Authorization: "Bearer " + token,

@@ -1,6 +1,7 @@
 import { userAPI } from "~/services/userApi";
 
 export type User = {
+  _id: string;
   first_name: string;
   last_name: string;
   email: string;
@@ -18,11 +19,8 @@ export type UserRes = {
   data: User[];
   pagination: Pagination | null;
 };
-export async function getUsers(): Promise<UserRes> {
-  let result = await userAPI.getAll({ count: 10, page: 1 });
-  // return {
-  //   data: [],
-  //   pagination: null,
-  // };
-  return result;
-}
+
+export type LoginRes = {
+  token: string;
+  user: User;
+};

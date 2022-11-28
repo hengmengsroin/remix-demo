@@ -13,9 +13,11 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import { Form } from "@remix-run/react";
 import { Logo } from "~/components/Logo";
 import { authenticator } from "~/services/auth.server";
+import { commitSession, destroySession, getSession } from "~/sessions";
 
 // First we create our UI with the form doing a POST and the inputs with the
 // names we are going to use in the strategy
@@ -81,10 +83,25 @@ export async function action({ request }: ActionArgs) {
   // we call the method with the name of the strategy we want to use and the
   // request object, optionally we pass an object with the URLs we want the user
   // to be redirected to after a success or a failure
-  return await authenticator.authenticate("user-pass", request, {
-    successRedirect: "/admin",
-    failureRedirect: "/login",
-  });
+  let result = await authenticator.authenticate("user-pass", request);
+  const session = await getSession(request.headers.get("Cookie"));
+  if (result) {
+    session.set("access_token", result.token);
+    session.set("user_id", result.user._id);
+
+    return redirect("/admin", {
+      headers: {
+        "Set-Cookie": await commitSession(session),
+      },
+    });
+  } else {
+    session.flash("error", "Invalid username/password");
+    return redirect("/login", {
+      headers: {
+        "Set-Cookie": await destroySession(session),
+      },
+    });
+  }
 }
 
 // Finally, we can export a loader function where we check if the user is

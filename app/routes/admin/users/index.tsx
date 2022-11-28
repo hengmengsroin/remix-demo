@@ -13,7 +13,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import type { LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, LoaderFunction } from "@remix-run/node";
 import TimeAgo from "react-timeago";
 import type { UserRes } from "~/models/user.server";
 import { AiOutlineEye } from "react-icons/ai";
@@ -21,6 +21,7 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { Helper } from "~/utils/helper";
 import { useLoaderData } from "@remix-run/react";
 import { userAPI } from "~/services/userApi";
+import { getSession } from "~/sessions";
 type LoaderData = {
   userData: UserRes;
 };
@@ -28,8 +29,17 @@ export function ErrorBoundary({ error }: any) {
   console.error(error);
   return <Box>Getting user has error</Box>;
 }
-export const loader: LoaderFunction = async () => {
-  let userList = await userAPI.getAll({ count: 10, page: 1 });
+export async function action({ request }: ActionArgs) {
+  console.log("call action in /admin/users");
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const token = session.get("access_token");
+  let userId = session.get("user_id");
+  console.log({ token, userId });
+
+  let userList = await userAPI.getAll({ count: 10, page: 1 }, token);
   return {
     userData: userList,
   };
